@@ -2,7 +2,8 @@ ARG NODE_VERSION=20
 ARG PNPM_VERSION=latest
 ARG APP_PORT=3001
 
-FROM mcr.microsoft.com/devcontainers/typescript-node:${NODE_VERSION}-bullseye
+# FROM mcr.microsoft.com/devcontainers/typescript-node:${NODE_VERSION}-bullseye
+FROM cypress/base:latest
 
 
 # Install pnpm.
