@@ -2,5 +2,5 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
-  modules: ["radix-vue/nuxt", "@nuxtjs/tailwindcss"],
+  modules: ["@nuxt/ui"],
 });
