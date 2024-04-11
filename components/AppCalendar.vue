@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CalendarOptions } from "@fullcalendar/core";
+import type { CalendarOptions, EventInput } from "@fullcalendar/core";
 import type { FullCalendarInstance } from "~/components/instances";
 
 import { CalendarViewType } from "~/enums";
@@ -14,10 +14,12 @@ const CALENDAR_VIEW_TYPES_MAP = {
 
 export interface Props {
   view?: CalendarViewType;
+  events?: EventInput[];
 }
 
 const props = withDefaults(defineProps<Props>(), {
   view: CalendarViewType.month,
+  events: () => [],
 });
 
 const date = defineModel<Date | undefined>("date", {
@@ -44,6 +46,7 @@ const options: CalendarOptions = {
   plugins: [dayGridPlugin],
   initialView: CALENDAR_VIEW_TYPES_MAP[props.view],
   initialDate: date.value,
+  initialEvents: props.events,
   headerToolbar: false,
 };
 
