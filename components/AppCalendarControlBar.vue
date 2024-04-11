@@ -79,6 +79,7 @@ const dateDisplay = computed(() => {
 
       <USelect
         v-model="view"
+        name="calendar-views"
         option-attribute="label"
         :options="calendarViewOptions"
       />

@@ -76,8 +76,16 @@ describe("<AppCalendarControlBar />", () => {
       expect(eventsMocks.onToday).toHaveBeenCalledOnce();
     });
 
-    it(
-      'should emit "change-view" event when change view dropdown value change'
-    );
+    it('should emit "update:view" event when view select changes value', async () => {
+      await wrapper
+        .find("select[name=calendar-views]")
+        .setValue(CalendarViewType.day);
+
+      const updateViewEvents = wrapper.emitted("update:view");
+
+      expect(updateViewEvents).toBeDefined();
+      expect(updateViewEvents).toHaveLength(1);
+      expect(updateViewEvents![0][0]).toBe(CalendarViewType.day);
+    });
   });
 });
