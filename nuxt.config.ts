@@ -2,12 +2,10 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
-  modules: ["@nuxt/ui"],
+
+  modules: ["@nuxt/test-utils/module", "@nuxt/ui"],
 
   colorMode: {
     preference: "light",
-  },
-  ui: {
-    global: true,
   },
 });
