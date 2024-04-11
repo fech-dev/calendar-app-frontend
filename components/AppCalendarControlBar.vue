@@ -15,6 +15,7 @@ interface Emits {
   (e: "prev"): void;
   (e: "next"): void;
   (e: "today"): void;
+  (e: "createEvent"): void;
 }
 
 const emit = defineEmits<Emits>();
@@ -47,7 +48,11 @@ const dateDisplay = computed(() => {
         {{ dateDisplay }}
       </div>
 
-      <!-- <UButton label="Create Event" /> -->
+      <UButton
+        icon="i-heroicons-plus"
+        label="Create event"
+        @click="emit('createEvent')"
+      />
     </div>
 
     <div class="flex gap-3">

@@ -87,5 +87,14 @@ describe("<AppCalendarControlBar />", () => {
       expect(updateViewEvents).toHaveLength(1);
       expect(updateViewEvents![0][0]).toBe(CalendarViewType.day);
     });
+
+    it('should emit "createEvent" event when "Create event" button is clicked', async () => {
+      await wrapper.findByText("Create event").trigger("click");
+
+      const createEvents = wrapper.emitted("createEvent");
+
+      expect(createEvents).toBeDefined();
+      expect(createEvents).toHaveLength(1);
+    });
   });
 });
