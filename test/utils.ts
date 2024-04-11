@@ -1,16 +1,11 @@
-import { afterEach } from "vitest";
-import type { RenderOptions } from "@testing-library/vue";
-import { cleanup, render as _render } from "@testing-library/vue";
+import { mount as _mount } from "@vue/test-utils";
 
-afterEach(() => cleanup());
-
-function render(component: any, options: RenderOptions) {
-  return _render(component, {
+const mount: typeof _mount = (component, options = {}) => {
+  return _mount(component, {
     ...options,
   });
-}
+};
 
-export * from "@testing-library/vue";
-export { default as userEvent } from "@testing-library/user-event";
+export * from "@vue/test-utils";
 
-export { render };
+export { mount };
