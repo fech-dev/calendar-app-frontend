@@ -6,5 +6,13 @@ export default defineVitestConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: ["./test/setup.ts"],
+    environmentOptions: {
+      nuxt: {
+        domEnvironment: "jsdom",
+        overrides: {
+          // other Nuxt config you want to pass
+        },
+      },
+    },
   },
 });
