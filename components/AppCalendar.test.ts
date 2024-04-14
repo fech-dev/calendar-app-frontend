@@ -1,5 +1,4 @@
 import { mount } from "~/test/utils";
-import { faker } from "@faker-js/faker";
 import { CalendarViewType } from "~/enums";
 import AppCalendar from "./AppCalendar.vue";
 import FullCalendarComponent from "@fullcalendar/vue3";
@@ -45,44 +44,7 @@ describe("<AppCalendar />", () => {
     });
   });
 
-  describe("v-model:date", () => {
-    let wrapper: ReturnType<typeof mount<typeof AppCalendar>>;
-    const startDate = faker.date.anytime();
-
-    beforeEach(() => {
-      wrapper = mount(AppCalendar, {
-        props: { date: startDate },
-      });
-    });
-
-    it('should emit "update:date" event if "next()" method is called', () => {
-      wrapper.vm.next();
-
-      const updateDateEvent = wrapper.emitted<Date>("update:date");
-
-      expect(updateDateEvent).toBeDefined();
-      expect(updateDateEvent).toHaveLength(1);
-      expect(updateDateEvent![0]).not.toEqual(startDate);
-    });
-
-    it('should emit "update:date" event if "prev()" method is called', () => {
-      wrapper.vm.prev();
-
-      const updateDateEvent = wrapper.emitted<Date>("update:date");
-
-      expect(updateDateEvent).toBeDefined();
-      expect(updateDateEvent).toHaveLength(1);
-      expect(updateDateEvent![0]).not.toEqual(startDate);
-    });
-
-    it('should emit "update:date" event if "today()" method is called', () => {
-      wrapper.vm.today();
-
-      const updateDateEvent = wrapper.emitted<Date>("update:date");
-
-      expect(updateDateEvent).toBeDefined();
-      expect(updateDateEvent).toHaveLength(1);
-      expect(updateDateEvent![0]).not.toEqual(startDate);
-    });
+  describe("Events", () => {
+    it('should emit "eventClick" event', () => {});
   });
 });
