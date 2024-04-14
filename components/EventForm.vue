@@ -44,15 +44,10 @@ const state = reactive<EventSchema>(props.initialState);
 
 const stopAllDayWatcher = watch(
   () => state.allDay,
-  (value) => {
-    if (value) {
-      const date = state.start;
-      state.start = dayjs(date).startOf("day").toDate();
-      state.end = dayjs(date).endOf("day").toDate();
-    } else {
-      state.start = dayjs().toDate();
-      state.end = dayjs(state.start).add(30, "minutes").toDate();
-    }
+  (allDay) => {
+    state.start = allDay
+      ? dayjs(state.start).startOf("day").toDate()
+      : dayjs().toDate();
   }
 );
 onBeforeUnmount(stopAllDayWatcher);
@@ -60,7 +55,9 @@ onBeforeUnmount(stopAllDayWatcher);
 const stopStartWatcher = watch(
   () => state.start,
   (value) => {
-    state.end = dayjs(value).add(30, "minutes").toDate();
+    state.end = !state.allDay
+      ? dayjs(value).add(30, "minutes").toDate()
+      : dayjs(value).endOf("day").toDate();
   }
 );
 onBeforeUnmount(stopStartWatcher);
