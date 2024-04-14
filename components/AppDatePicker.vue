@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DatePickerDate } from "v-calendar/dist/types/src/use/datePicker.js";
+import type { InjectedFormGroupValue } from "#ui/types";
 import dayjs from "dayjs";
 import { DatePicker as VCalendarDatePicker } from "v-calendar";
 import "v-calendar/dist/style.css";
@@ -15,8 +15,6 @@ const props = withDefaults(defineProps<Props>(), {
   datetime: false,
 });
 
-const emit = defineEmits(["update:model-value", "close"]);
-
 const date = defineModel<Date>({
   default: undefined,
 });
@@ -27,6 +25,12 @@ const stopDateWatcher = watch(date, () => {
   open.value = false;
 });
 onBeforeUnmount(stopDateWatcher);
+
+const formGroup = inject<InjectedFormGroupValue>("form-group");
+
+const buttonColor = computed<string>(() => {
+  return formGroup?.error.value ? "red" : "primary";
+});
 
 const dateLabelFormat = computed<string>(() =>
   props.datetime ? "YYYY-MM-DD HH:mm" : "YYYY-MM-DD"
@@ -44,6 +48,7 @@ const dateLabel = computed<string | undefined>(() => {
       variant="outline"
       icon="i-heroicons-calendar-days-20-solid"
       block
+      :color="buttonColor"
       :label="dateLabel"
       :disabled
     />
@@ -57,6 +62,7 @@ const dateLabel = computed<string | undefined>(() => {
         :is-dark="{ selector: 'html', darkClass: 'dark' }"
         :first-day-of-week="2"
         :min-date="minDate"
+        is24hr
         v-model="date"
       />
     </template>
