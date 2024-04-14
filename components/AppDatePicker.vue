@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { InjectedFormGroupValue } from "#ui/types";
-import dayjs from "dayjs";
+import dayjs from "~/utils/date";
 import { DatePicker as VCalendarDatePicker } from "v-calendar";
 import "v-calendar/dist/style.css";
 
