@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
 
-  modules: ["@nuxt/test-utils/module", "@pinia/nuxt", "@nuxt/ui"],
+  modules: ["@nuxt/test-utils/module", "@nuxt/ui"],
 
   runtimeConfig: {
     public: {
