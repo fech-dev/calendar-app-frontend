@@ -1,15 +1,12 @@
 <script lang="ts" setup>
-import dayjs from "dayjs";
 import { capitalize } from "lodash-es";
 import { CalendarViewType } from "~/enums";
 
 interface Props {
-  date?: Date;
+  title?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  date: () => dayjs().toDate(),
-});
+defineProps<Props>();
 
 interface Emits {
   (e: "prev"): void;
@@ -28,24 +25,13 @@ const calendarViewOptions = Object.values(CalendarViewType).map((value) => ({
   label: capitalize(value),
   value,
 }));
-
-const dateDisplay = computed(() => {
-  switch (view.value) {
-    case CalendarViewType.month:
-    case CalendarViewType.week:
-      return dayjs(props.date).format("MMMM YYYY");
-
-    case CalendarViewType.day:
-      return dayjs(props.date).format("DD MMMM YYYY");
-  }
-});
 </script>
 
 <template>
   <div class="flex justify-between items-center px-8 border-b border-gray-300">
     <div class="flex gap-4 items-center">
       <div class="text-2xl font-semibold">
-        {{ dateDisplay }}
+        {{ title }}
       </div>
 
       <UButton

@@ -1,42 +1,17 @@
 // @vitest-environment nuxt
 
-import { mount } from "~/test/utils";
-import dayjs from "dayjs";
+import { flushPromises, mount } from "~/test/utils";
+import dayjs from "~/utils/date";
 import { CalendarViewType } from "~/enums";
 import AppCalendarControlBar from "./AppCalendarControlBar.vue";
 
 describe("<AppCalendarControlBar />", () => {
-  it("should display the current month", () => {
+  it("shows the title prop", () => {
     const wrapper = mount(AppCalendarControlBar, {
-      props: {
-        view: CalendarViewType.month,
-        date: dayjs("2024-04-10").toDate(),
-      },
+      props: { title: "April 2024" },
     });
 
     expect(wrapper.findByText("April 2024").exists()).toBe(true);
-  });
-
-  it("should display the current week", () => {
-    const wrapper = mount(AppCalendarControlBar, {
-      props: {
-        view: CalendarViewType.week,
-        date: dayjs("2024-04-10").toDate(),
-      },
-    });
-
-    expect(wrapper.findByText("April 2024").exists()).toBe(true);
-  });
-
-  it("should display the current day", () => {
-    const wrapper = mount(AppCalendarControlBar, {
-      props: {
-        view: CalendarViewType.day,
-        date: dayjs("2024-04-10").toDate(),
-      },
-    });
-
-    expect(wrapper.findByText("10 April 2024").exists()).toBe(true);
   });
 
   describe("events", () => {
