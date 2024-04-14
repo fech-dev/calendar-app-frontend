@@ -5,6 +5,10 @@ export default defineNuxtConfig({
 
   modules: ["@nuxt/test-utils/module", "@nuxt/ui"],
 
+  app: {
+    pageTransition: { name: "page", mode: "out-in" },
+  },
+
   runtimeConfig: {
     public: {
       apiBaseUrl: "",
